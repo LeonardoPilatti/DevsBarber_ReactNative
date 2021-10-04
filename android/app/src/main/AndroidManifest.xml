@@ -2,6 +2,8 @@
   package="com.devsbarber">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    
+    <!-- esse acess fine location é para pegar a localização do celular da pessoa, para ela permitir -->
 
     <application
       android:name=".MainApplication"
