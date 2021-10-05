@@ -10,6 +10,8 @@ import {
   SignMessageButtonTextBold,
 } from './styles';
 
+import Api from '../../Api';
+
 import BarberLogo from '../../assets/barber.svg';
 import SignInInput from '../../components/SignInInput';
 
@@ -28,7 +30,19 @@ const index = () => {
     });
   };
 
-  const handleSignClick = () => {};
+  const handleSignClick = async () => {
+    if (emailField != '' && passwordField != '') {
+      let json = await Api.SignIn(emailField, passwordField);
+      console.log(json);
+      if (json.token) {
+        alert('Deu certo');
+      } else {
+        alert('E-mail e/ou senha errados!');
+      }
+    } else {
+      alert('Preencha os campos!');
+    }
+  };
 
   return (
     <Container>
