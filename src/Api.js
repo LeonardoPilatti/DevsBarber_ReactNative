@@ -16,7 +16,7 @@ export default {
   SignIn: async (email, password) => {
     const req = await fetch(`${BASE_API}/auth/login`, {
       method: 'POST',
-      header: {
+      headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
       },
@@ -28,7 +28,7 @@ export default {
   SignUp: async (name, email, password) => {
     const req = await fetch(`${BASE_API}/user`, {
       method: 'POST',
-      header: {
+      headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
       },

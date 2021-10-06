@@ -13,6 +13,8 @@ import {
 import BarberLogo from '../../assets/barber.svg';
 import SignInInput from '../../components/SignInInput';
 
+import Api from '../../Api';
+
 import PersonIcon from '../../assets/person.svg';
 import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
@@ -30,7 +32,18 @@ const index = () => {
     });
   };
 
-  const handleSignClick = () => {};
+  const handleSignClick = async () => {
+    if (nomeField != '' && emailField != '' && passwordField != '') {
+      let res = await Api.SignUp(nomeField, emailField, passwordField);
+      if (res.token) {
+        alert('Deu certo!');
+      } else {
+        alert('Erro: ' + res.error);
+      }
+    } else {
+      alert('PReencha os campos!');
+    }
+  };
 
   return (
     <Container>
