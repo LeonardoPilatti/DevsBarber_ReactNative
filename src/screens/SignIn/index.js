@@ -1,5 +1,5 @@
-import React from 'react';
-import {useNavigation} from '@react-navigation/core';
+import React, {useContext} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {UserContext} from '../../contexts/UserContext';
@@ -23,7 +23,7 @@ import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
 const index = () => {
-  const {dispatch: userDispatch} = React.useContext(UserContext);
+  const {dispatch: userDispatch} = useContext(UserContext);
   const navigation = useNavigation();
 
   const [emailField, setEmailField] = React.useState('');

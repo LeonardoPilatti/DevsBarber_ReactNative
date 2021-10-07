@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {UserContext} from '../../contexts/UserContext';
 import {
   Container,
   InputArea,
@@ -20,6 +22,7 @@ import EmailIcon from '../../assets/email.svg';
 import LockIcon from '../../assets/lock.svg';
 
 const index = () => {
+  const {dispatch: userDispatch} = useContext(UserContext);
   const navigation = useNavigation();
 
   const [nomeField, setNomeField] = React.useState('');
@@ -36,7 +39,19 @@ const index = () => {
     if (nomeField != '' && emailField != '' && passwordField != '') {
       let res = await Api.SignUp(nomeField, emailField, passwordField);
       if (res.token) {
-        alert('Deu certo!');
+        await AsyncStorage.setItem('@token', res.token);
+
+        userDispatch({
+          type: 'setAvatar',
+          payload: {
+            avatar: res.data.avatar,
+          },
+        });
+
+        navigation.reset({
+          /// reset para ele não deixar voltar;
+          routes: [{name: 'MainTab'}],
+        });
       } else {
         alert('Erro: ' + res.error);
       }

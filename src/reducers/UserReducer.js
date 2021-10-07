@@ -4,7 +4,7 @@ export const initialState = {
   appointments: [],
 };
 
-export const userReducer = (state, action) => {
+export const UserReducer = (state, action) => {
   switch (action.type) {
     case 'setAvatar':
       return {...state, avatar: action.payload.avatar};
