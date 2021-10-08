@@ -51,6 +51,10 @@ export const LocationFinder = styled.TouchableOpacity`
   height: 24px;
 `;
 
+export const LoadingIcon = styled.ActivityIndicator`
+  margin-top: 50px;
+`;
+
 /*
   Scroller,
   HeaderArea,
@@ -59,4 +63,5 @@ export const LocationFinder = styled.TouchableOpacity`
   LocationArea,
   LocationInput,
   LocationFinder,
+  LoadingIcon,
 */
