@@ -17,6 +17,7 @@ const index = () => {
   React.useEffect(() => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem('@token');
+
       if (token) {
         /// se tiver token, ou seja, caso ele seja diferente de null;
         //validar o token
