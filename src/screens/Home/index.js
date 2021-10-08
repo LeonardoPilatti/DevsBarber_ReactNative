@@ -16,10 +16,12 @@ import {
   LocationInput,
   LocationFinder,
   LoadingIcon,
+  ListArea,
 } from './styles';
 
 import SearchIcon from '../../assets/search.svg';
 import MyLocationIcon from '../../assets/my_location.svg';
+import BarberItem from '../../components/BarberItem';
 
 const index = () => {
   const navigation = useNavigation();
@@ -60,6 +62,10 @@ const index = () => {
     let res = await Api.getBarbers();
     // console.log(res.data);
     if (res.error == '') {
+      if (res.loc) {
+        setLocationText(res.loc);
+      }
+
       setListBarber(res.data);
     } else {
       alert('Erro: ' + res.error);
@@ -97,6 +103,12 @@ const index = () => {
         </LocationArea>
 
         {loading && <LoadingIcon size="large" color="#fff" />}
+
+        <ListArea>
+          {listBarber.map((item, k) => (
+            <BarberItem key={k} data={item} />
+          ))}
+        </ListArea>
       </Scroller>
     </Container>
   );
